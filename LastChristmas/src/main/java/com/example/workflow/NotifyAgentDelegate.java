@@ -15,10 +15,11 @@ public class NotifyAgentDelegate implements JavaDelegate {
         //String ticketType = "Coach";
 
         //money = (String) delegateExecution.getVariable("money");
+        long agentId = (long)delegateExecution.getVariable("agent_id");
         //double moneyDouble = Double.parseDouble(money);
-
+        long test = 0;
         //delegateExecution.setVariable("ticketType", ticketType);
-
+        //send post to localhost 8080 with agent_id as parameter or something
 
 
     }
