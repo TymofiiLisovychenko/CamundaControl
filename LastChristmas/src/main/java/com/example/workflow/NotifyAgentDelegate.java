@@ -15,7 +15,7 @@ public class NotifyAgentDelegate implements JavaDelegate {
         //String ticketType = "Coach";
 
         //money = (String) delegateExecution.getVariable("money");
-        long agentId = (long)delegateExecution.getVariable("agent_id");
+        long polisaId = (long)delegateExecution.getVariable("poilsa_id");
         //double moneyDouble = Double.parseDouble(money);
         long test = 0;
         //delegateExecution.setVariable("ticketType", ticketType);
