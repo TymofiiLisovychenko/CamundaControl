@@ -5,12 +5,10 @@
       <bpmn:outgoing>Flow_14r2lwv</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_14r2lwv" sourceRef="StartEvent_1" targetRef="Activity_1vci5z3" />
-    <bpmn:sequenceFlow id="Flow_109v1yp" sourceRef="Activity_03h68vj" targetRef="Activity_0344r8v" />
     <bpmn:userTask id="Activity_1vci5z3" name="Rejestracja wniosku">
       <bpmn:incoming>Flow_14r2lwv</bpmn:incoming>
       <bpmn:outgoing>Flow_1a50kkf</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0kwm0t8" sourceRef="Activity_0344r8v" targetRef="Activity_0hz7h0f" />
     <bpmn:endEvent id="Event_0h7pinz">
       <bpmn:incoming>Flow_1qdmk0b</bpmn:incoming>
     </bpmn:endEvent>
@@ -18,21 +16,23 @@
     <bpmn:sequenceFlow id="Flow_1uu0grl" sourceRef="Activity_0zdz4on" targetRef="Activity_03h68vj" />
     <bpmn:userTask id="Activity_03h68vj" name="Decyzja">
       <bpmn:incoming>Flow_1uu0grl</bpmn:incoming>
-      <bpmn:outgoing>Flow_109v1yp</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1m0du6q</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:serviceTask id="Activity_0zdz4on" name="Powiadomienie do agenta" camunda:class="com.example.workflow.NotifyAgentDelegate">
-      <bpmn:incoming>Flow_1a50kkf</bpmn:incoming>
+      <bpmn:incoming>Flow_1ll6qwe</bpmn:incoming>
       <bpmn:outgoing>Flow_1uu0grl</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0344r8v" name="Zapis w systemie" camunda:class="com.example.workflow.Application">
-      <bpmn:incoming>Flow_109v1yp</bpmn:incoming>
-      <bpmn:outgoing>Flow_0kwm0t8</bpmn:outgoing>
+    <bpmn:serviceTask id="Activity_0344r8v" name="Zapis w systemie" camunda:class="com.example.workflow.RecordDataDelegate">
+      <bpmn:incoming>Flow_1a50kkf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ll6qwe</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0hz7h0f" name="Wysłanie maila" camunda:class="com.example.workflow.Application">
-      <bpmn:incoming>Flow_0kwm0t8</bpmn:incoming>
+    <bpmn:serviceTask id="Activity_0hz7h0f" name="Wysłanie maila" camunda:class="com.example.workflow.SendMailDelegate">
+      <bpmn:incoming>Flow_1m0du6q</bpmn:incoming>
       <bpmn:outgoing>Flow_1qdmk0b</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_1a50kkf" sourceRef="Activity_1vci5z3" targetRef="Activity_0zdz4on" />
+    <bpmn:sequenceFlow id="Flow_1a50kkf" sourceRef="Activity_1vci5z3" targetRef="Activity_0344r8v" />
+    <bpmn:sequenceFlow id="Flow_1m0du6q" sourceRef="Activity_03h68vj" targetRef="Activity_0hz7h0f" />
+    <bpmn:sequenceFlow id="Flow_1ll6qwe" sourceRef="Activity_0344r8v" targetRef="Activity_0zdz4on" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_03j5yil">
@@ -45,41 +45,41 @@
       <bpmndi:BPMNShape id="Event_0h7pinz_di" bpmnElement="Event_0h7pinz">
         <dc:Bounds x="1062" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1qh441f_di" bpmnElement="Activity_0zdz4on">
-        <dc:Bounds x="430" y="77" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0nfiljj_di" bpmnElement="Activity_0344r8v">
-        <dc:Bounds x="760" y="77" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_12anap1_di" bpmnElement="Activity_0hz7h0f">
         <dc:Bounds x="910" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0akllis_di" bpmnElement="Activity_03h68vj">
-        <dc:Bounds x="600" y="77" width="100" height="80" />
+        <dc:Bounds x="750" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qh441f_di" bpmnElement="Activity_0zdz4on">
+        <dc:Bounds x="580" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0nfiljj_di" bpmnElement="Activity_0344r8v">
+        <dc:Bounds x="420" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_14r2lwv_di" bpmnElement="Flow_14r2lwv">
         <di:waypoint x="195" y="117" />
         <di:waypoint x="260" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_109v1yp_di" bpmnElement="Flow_109v1yp">
-        <di:waypoint x="700" y="117" />
-        <di:waypoint x="760" y="117" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0kwm0t8_di" bpmnElement="Flow_0kwm0t8">
-        <di:waypoint x="860" y="117" />
-        <di:waypoint x="910" y="117" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1qdmk0b_di" bpmnElement="Flow_1qdmk0b">
         <di:waypoint x="1010" y="117" />
         <di:waypoint x="1062" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1uu0grl_di" bpmnElement="Flow_1uu0grl">
-        <di:waypoint x="530" y="117" />
-        <di:waypoint x="600" y="117" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1a50kkf_di" bpmnElement="Flow_1a50kkf">
         <di:waypoint x="360" y="117" />
-        <di:waypoint x="430" y="117" />
+        <di:waypoint x="420" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1uu0grl_di" bpmnElement="Flow_1uu0grl">
+        <di:waypoint x="680" y="117" />
+        <di:waypoint x="750" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m0du6q_di" bpmnElement="Flow_1m0du6q">
+        <di:waypoint x="850" y="117" />
+        <di:waypoint x="910" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ll6qwe_di" bpmnElement="Flow_1ll6qwe">
+        <di:waypoint x="520" y="117" />
+        <di:waypoint x="580" y="117" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
